@@ -99,6 +99,9 @@ importers:
       '@elizaos/eliza-starter':
         specifier: workspace:*
         version: link:../..
+      seam:
+        specifier: ^1.42.0
+        version: 1.42.0
       tsup:
         specifier: 8.3.5
         version: 8.3.5(postcss@8.5.1)(typescript@5.6.3)(yaml@2.7.0)
@@ -2493,6 +2496,34 @@ packages:
   '@scure/starknet@1.0.0':
     resolution: {integrity: sha512-o5J57zY0f+2IL/mq8+AYJJ4Xpc1fOtDhr+mFQKbHnYFmm3WQrC+8zj2HEgxak1a+x86mhmBC1Kq305KUpVf0wg==}
 
+  '@seamapi/http@1.18.0':
+    resolution: {integrity: sha512-Wvs5I1QKYoOcKd1a+Asigx9385Yr7lgR4rtGo9wljJ77Kk5BA3H7mmBwvVS9AJojb4ppEq4SJb9vOTKQrDSJ7A==}
+    engines: {node: '>=18.12.0', npm: '>= 9.0.0'}
+    peerDependencies:
+      '@seamapi/types': ^1.317.0
+    peerDependenciesMeta:
+      '@seamapi/types':
+        optional: true
+
+  '@seamapi/types@1.321.0':
+    resolution: {integrity: sha512-45+sPojUCxA+6SmAv4UQ+dMcNidQWgdvAtOqcpzs4863rF4ujd4aDZyAMZ/Qw4W9VgVTNzfDdAcaWP7RItEqBQ==}
+    engines: {node: '>=18.12.0', npm: '>= 9.0.0'}
+    peerDependencies:
+      zod: ^3.21.4
+
+  '@seamapi/url-search-params-serializer@1.1.2':
+    resolution: {integrity: sha512-c54kIs+0gA9pnKWDEQtQcuCN9fUCRpAfIyKSARbekqHB0i3TJ+CkKoZoe04R+L8HYhWeEtWAJ+BLNba9igjwHA==}
+    engines: {node: '>=18.12.0', npm: '>= 9.0.0'}
+
+  '@seamapi/webhook@1.1.1':
+    resolution: {integrity: sha512-ngfypLTbQ8aYSLYUpsgmJz7ZtrQ0/aTC1D8os2oh0VpDIY5kHNpwlNt/pr7rpEeW9TUQChG+yxR2HoxMDT3jmA==}
+    engines: {node: '>=18.12.0', npm: '>= 9.0.0'}
+    peerDependencies:
+      '@seamapi/types': ^1.166.0
+    peerDependenciesMeta:
+      '@seamapi/types':
+        optional: true
+
   '@selderee/plugin-htmlparser2@0.11.0':
     resolution: {integrity: sha512-P33hHGdldxGabLFjPPpaTxVolMrzrcegejx+0GxjrIb9Zv48D8yAIA/QTDR2dFl7Uz7urX8aX6+5bCZslr+gWQ==}
 
@@ -2970,6 +3001,9 @@ packages:
   '@sqds/multisig@2.1.3':
     resolution: {integrity: sha512-WOiL7La+RSiJsz7jVO85yhSiiSvNMUthiWuLPeWVOoD6IYa34BEAzanF1RdXRWGglSbRFYCTkyr+Ay1WmXmSRQ==}
     engines: {node: '>=14'}
+
+  '@stablelib/base64@1.0.1':
+    resolution: {integrity: sha512-1bnPQqSxSuc3Ii6MhBysoWCg58j97aUjuCSZrGSmDxNqtytIi0k8utUenAwTZN4V5mXXYGsVUI9zeBqy+jBOSQ==}
 
   '@starknet-io/types-js@0.7.10':
     resolution: {integrity: sha512-1VtCqX4AHWJlRRSYGSn+4X1mqolI1Tdq62IwzoU2vUuEE72S1OlEeGhpvd6XsdqXcfHmVzYfj8k1XtKBQqwo9w==}
@@ -3635,8 +3669,18 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
+  axios-better-stacktrace@2.1.7:
+    resolution: {integrity: sha512-m16wNbfb7crBpENBukoBdN1G9NwqSCkuIeKjSEP2iUoFvgNUnSW1/1Ov79EkTu29xmg+TsngJcy2lfwqBzVT7g==}
+    peerDependencies:
+      axios: '*'
+
   axios-retry@3.9.1:
     resolution: {integrity: sha512-8PJDLJv7qTTMMwdnbMvrLYuvB47M81wRtxQmEdV5w4rgbTXTt+vtPkXwajOfOdSyv/wZICJOC+/UhXH4aQ/R+w==}
+
+  axios-retry@4.5.0:
+    resolution: {integrity: sha512-aR99oXhpEDGo0UuAlYcn2iGRds30k366Zfa05XWScR9QaQD4JYiP3/1Qt1u7YlefUOK+cn0CcwoL1oefavQUlQ==}
+    peerDependencies:
+      axios: 0.x || 1.x
 
   axios@0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
@@ -4834,6 +4878,9 @@ packages:
 
   fast-safe-stringify@2.1.1:
     resolution: {integrity: sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==}
+
+  fast-sha256@1.3.0:
+    resolution: {integrity: sha512-n11RGP/lrWEFI/bWdygLxhI+pVeo1ZYIVwvvPkW7azl/rOy+F3HYRZ2K5zeE9mmkhQppyv9sQFx0JM9UabnpPQ==}
 
   fast-stable-stringify@1.0.0:
     resolution: {integrity: sha512-wpYMUmFu5f00Sm0cj2pfivpmawLZ0NKdviQ4w9zJeR8JVtOpOxHmLaJuj0vxvGqMJQWyP/COUkF75/57OKyRag==}
@@ -7350,6 +7397,10 @@ packages:
   scrypt-js@3.0.1:
     resolution: {integrity: sha512-cdwTTnqPu0Hyvf5in5asVdZocVDTNRmR7XEcJuIzMjJeSHybHl7vpB66AzwTaIg6CLSbtjcxc8fqcySfnTkccA==}
 
+  seam@1.42.0:
+    resolution: {integrity: sha512-MhoQWpBh1nWHsGMRPjDCrjqZPW+pvlOuJGNbB6tfWRI1x43hlW+ctk3Rprig4ZaNI728/1kEpuAmRrSf8I0a/g==}
+    engines: {node: '>=18.12.0', npm: '>= 9.0.0'}
+
   secp256k1@5.0.1:
     resolution: {integrity: sha512-lDFs9AAIaWP9UCdtWrotXWWF9t8PWgQDcxqgAnpM9rMqxb3Oaq2J0thzPVSxBwdJgyQtkU/sYtFtbM1RSt/iYA==}
     engines: {node: '>=18.0.0'}
@@ -7784,6 +7835,12 @@ packages:
   svelte@5.19.9:
     resolution: {integrity: sha512-860s752/ZZxHIsii31ELkdKBOCeAuDsfb/AGUXJyQyzUVLRSt4oqEw/BV5+2+mNg8mbqmD3OK+vMvwWMPM6f8A==}
     engines: {node: '>=18'}
+
+  svix-fetch@3.0.0:
+    resolution: {integrity: sha512-rcADxEFhSqHbraZIsjyZNh4TF6V+koloX1OzZ+AQuObX9mZ2LIMhm1buZeuc5BIZPftZpJCMBsSiBaeszo9tRw==}
+
+  svix@1.45.1:
+    resolution: {integrity: sha512-KQ4G9xralBsmAx/5VFVlOivFlBux2EhRwPJOstmr+US2w2Uz9K31kVqmwbYbsxJIlZtOrWrmVCz6rQd1Hoq+vA==}
 
   swr@2.3.2:
     resolution: {integrity: sha512-RosxFpiabojs75IwQ316DGoDRmOqtiAj0tg8wCcbEu4CiLZBs/a9QNtHV7TUfDXmmlgqij/NqzKq/eLelyv9xA==}
@@ -13529,6 +13586,31 @@ snapshots:
       '@noble/curves': 1.3.0
       '@noble/hashes': 1.3.3
 
+  '@seamapi/http@1.18.0(@seamapi/types@1.321.0(zod@3.24.1))':
+    dependencies:
+      '@seamapi/url-search-params-serializer': 1.1.2
+      axios: 1.7.9
+      axios-better-stacktrace: 2.1.7(axios@1.7.9)
+      axios-retry: 4.5.0(axios@1.7.9)
+    optionalDependencies:
+      '@seamapi/types': 1.321.0(zod@3.24.1)
+    transitivePeerDependencies:
+      - debug
+
+  '@seamapi/types@1.321.0(zod@3.24.1)':
+    dependencies:
+      zod: 3.24.1
+
+  '@seamapi/url-search-params-serializer@1.1.2': {}
+
+  '@seamapi/webhook@1.1.1(@seamapi/types@1.321.0(zod@3.24.1))':
+    dependencies:
+      svix: 1.45.1
+    optionalDependencies:
+      '@seamapi/types': 1.321.0(zod@3.24.1)
+    transitivePeerDependencies:
+      - encoding
+
   '@selderee/plugin-htmlparser2@0.11.0':
     dependencies:
       domhandler: 5.0.3
@@ -14545,6 +14627,8 @@ snapshots:
       - typescript
       - utf-8-validate
 
+  '@stablelib/base64@1.0.1': {}
+
   '@starknet-io/types-js@0.7.10': {}
 
   '@supercharge/promise-pool@3.2.0': {}
@@ -15463,9 +15547,18 @@ snapshots:
 
   aws4@1.13.2: {}
 
+  axios-better-stacktrace@2.1.7(axios@1.7.9):
+    dependencies:
+      axios: 1.7.9
+
   axios-retry@3.9.1:
     dependencies:
       '@babel/runtime': 7.26.7
+      is-retry-allowed: 2.2.0
+
+  axios-retry@4.5.0(axios@1.7.9):
+    dependencies:
+      axios: 1.7.9
       is-retry-allowed: 2.2.0
 
   axios@0.27.2:
@@ -16904,6 +16997,8 @@ snapshots:
   fast-redact@3.5.0: {}
 
   fast-safe-stringify@2.1.1: {}
+
+  fast-sha256@1.3.0: {}
 
   fast-stable-stringify@1.0.0: {}
 
@@ -19791,6 +19886,16 @@ snapshots:
 
   scrypt-js@3.0.1: {}
 
+  seam@1.42.0:
+    dependencies:
+      '@seamapi/http': 1.18.0(@seamapi/types@1.321.0(zod@3.24.1))
+      '@seamapi/types': 1.321.0(zod@3.24.1)
+      '@seamapi/webhook': 1.1.1(@seamapi/types@1.321.0(zod@3.24.1))
+      zod: 3.24.1
+    transitivePeerDependencies:
+      - debug
+      - encoding
+
   secp256k1@5.0.1:
     dependencies:
       elliptic: 6.6.1
@@ -20402,6 +20507,24 @@ snapshots:
       locate-character: 3.0.0
       magic-string: 0.30.17
       zimmerframe: 1.1.2
+
+  svix-fetch@3.0.0:
+    dependencies:
+      node-fetch: 2.7.0
+      whatwg-fetch: 3.6.20
+    transitivePeerDependencies:
+      - encoding
+
+  svix@1.45.1:
+    dependencies:
+      '@stablelib/base64': 1.0.1
+      '@types/node': 22.13.1
+      es6-promise: 4.2.8
+      fast-sha256: 1.3.0
+      svix-fetch: 3.0.0
+      url-parse: 1.5.10
+    transitivePeerDependencies:
+      - encoding
 
   swr@2.3.2(react@19.0.0):
     dependencies:
