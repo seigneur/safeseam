@@ -4,7 +4,9 @@
   "clients": [],
   "modelProvider": "openai",
   "settings": {
-    "secrets": {},
+    "secrets": {
+      "SEAM_API_KEY": "seam_testZAxG_ASNnpCmV8HMwUV182hFtApXi"
+    },
     "voice": {
       "model": "en_US-hfc_female-medium"
     }
