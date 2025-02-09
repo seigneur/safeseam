@@ -17,5 +17,6 @@ export interface SafeCreateResponse {
 
 export interface SafeService extends Service {
   createSafe(_safeConfig: SafeConfig, runtime: IAgentRuntime): Promise<any>;
+  sendTx(_safeAddress: string, runtime: IAgentRuntime, usdc:bigint, to: string): Promise<any>;
 }
 

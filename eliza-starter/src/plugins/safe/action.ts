@@ -30,12 +30,12 @@ export const safeAction: Action = {
     [
       {
         user: '{{user1}}',
-        content: { text: 'Send 2 to 0xaddress1' } as SafeParametersContent
+        content: { text: 'Send 2 to 0xaddress1 0.0001 USDC' } as SafeParametersContent
       },
       {
         user: '{{agentName}}',
         content: {
-          text: '2 has been sent to 0xaddress1',
+          text: '0.001 has been sent to 0xaddress1',
           action: 'SEND'
         }
       }
