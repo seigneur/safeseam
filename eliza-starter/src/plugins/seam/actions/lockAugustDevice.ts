@@ -6,19 +6,19 @@ import {
   IAgentRuntime,
   Memory,
   State,
+  Content,
 } from "@elizaos/core";
-import { validateSeamConfig } from "../environment";
-import { listAugustDevicesExamples } from "../examples";
-import { createSeamService } from "../services";
+import { validateSeamConfig } from "../environment.ts";
+import { lockAugustDeviceExamples } from "../examples.ts";
+import { createSeamService } from "../services.ts";
 
-export const listAugustDevices: Action = {
-  name: "SEAM_GET_AUGUST_DEVICES",
+export const lockAugustDevice: Action = {
+  name: "SEAM_LOCK_AUGUST_DEVICE",
   similes: [
-      "AUGUST",
-      "AUGUST DEVICES",
-      "AUGUST LOCKS"
+      "LOCK AUGUST DEVICE",
+      "AUGUST LOCK",
   ],
-  description: "List all August devices",
+  description: "Locks an August device",
   validate: async (runtime: IAgentRuntime) => {
       await validateSeamConfig(runtime);
       return true;
@@ -37,27 +37,27 @@ export const listAugustDevices: Action = {
       );
 
       try {
-          const augustDevices = await seamService.listAugustDevices();
+          const deviceName = (message.content as Content).text.split('"')[1];
+          console.log(deviceName)
+          const actionAttempt = await seamService.lockAugustDevice(deviceName);
           elizaLogger.success(
-              `Successfully retrieved August devices`
+              `Successfully locked August device`
           );
           if (callback) {
+              console.log(actionAttempt)
               callback({
-                  text: `
-                  August devices found: ${augustDevices.length} 
-                  ${augustDevices.map((device) => device.name).join(", ")}
-                  `
+                  text:`Your August device (${deviceName}) has been locked`
               });
               return true;
           }
       } catch (error:any) {
           elizaLogger.error("Error in Seam plugin handler:", error);
           callback({
-              text: `Error retrieving August devices: ${error.message}`,
+              text: `Error locking August devices: ${error.message}`,
               content: { error: error.message },
           });
           return false;
       }
   },
-  examples: listAugustDevicesExamples as ActionExample[][],
+  examples: lockAugustDeviceExamples as ActionExample[][],
 } as Action;

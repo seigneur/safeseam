@@ -9,6 +9,7 @@ import {
 import { bootstrapPlugin } from "@elizaos/plugin-bootstrap";
 import { createNodePlugin } from "@elizaos/plugin-node";
 import { safePlugin } from "./plugins/safe/index.ts";
+import { seamPlugin } from "./plugins/seam/index.ts";
 import { solanaPlugin } from "@elizaos/plugin-solana";
 import fs from "fs";
 import net from "net";
@@ -60,6 +61,7 @@ export function createAgent(
       bootstrapPlugin,
       nodePlugin,
       safePlugin,
+      seamPlugin,
       character.settings?.secrets?.WALLET_PUBLIC_KEY ? solanaPlugin : null,
     ].filter(Boolean),
     providers: [],

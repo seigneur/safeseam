@@ -14,7 +14,7 @@ export async function validateSeamConfig(
         const config = {
           SEAM_API_KEY: runtime.getSetting("SEAM_API_KEY"),
         };
-        console.log('config: ', config)
+
         return seamEnvSchema.parse(config);
     } catch (error) {
         console.log("error::::", error)
