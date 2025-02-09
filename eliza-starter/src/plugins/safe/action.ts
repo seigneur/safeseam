@@ -1,18 +1,14 @@
-import { Action, Content, IAgentRuntime, Memory, State } from '@ai16z/eliza';
-import { createSafe } from './services.ts';
+import { Action, Content, IAgentRuntime, Memory, State } from '@elizaos/core';
+import { safeService } from './services.ts';
+import { SafeCreateResponse } from './types.ts';
 
 interface SafeParametersContent extends Content {
   text: string;
 }
 
-interface SafeCreateResponse {
-  success: boolean;
-  response: string;
-}
-
 export const safeAction: Action = {
-  name: 'CALCULATE',
-  description: 'Performs basic arithmetic calculations',
+  name: 'SAFE',
+  description: 'Performs basic SAFE Multisig Operations',
   similes: [
     'CREATE_SAFE',
     'SEND'
@@ -21,7 +17,7 @@ export const safeAction: Action = {
     [
       {
         user: '{{user1}}',
-        content: { text: '0xaddress1, 0xaddress2' } as SafeParametersContent
+        content: { text: 'Create a safe with 0xaddress1, 0xaddress2' } as SafeParametersContent
       },
       {
         user: '{{agentName}}',
@@ -52,7 +48,7 @@ export const safeAction: Action = {
         return false;
       }
       const parts = content.text.split(/\s+/);
-      return parts.length === 2 && parts.every((part) => part.startsWith('0x'));
+      return true;
     } catch {
       return false;
     }
@@ -64,7 +60,7 @@ export const safeAction: Action = {
       
       let result: string;
 
-      result = await createSafe({ owners:addresses, threshold:1 });
+      result = await safeService.createSafe({ owners:addresses, threshold:1 }, runtime);
 
       return {
         success: true,

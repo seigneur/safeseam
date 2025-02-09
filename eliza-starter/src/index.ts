@@ -8,6 +8,7 @@ import {
 } from "@elizaos/core";
 import { bootstrapPlugin } from "@elizaos/plugin-bootstrap";
 import { createNodePlugin } from "@elizaos/plugin-node";
+import { safePlugin } from "./plugins/safe/index.ts";
 import { solanaPlugin } from "@elizaos/plugin-solana";
 import fs from "fs";
 import net from "net";
@@ -58,6 +59,7 @@ export function createAgent(
     plugins: [
       bootstrapPlugin,
       nodePlugin,
+      safePlugin,
       character.settings?.secrets?.WALLET_PUBLIC_KEY ? solanaPlugin : null,
     ].filter(Boolean),
     providers: [],
@@ -72,6 +74,7 @@ async function startAgent(character: Character, directClient: DirectClient) {
   try {
     character.id ??= stringToUuid(character.name);
     character.username ??= character.name;
+    character.plugins.push(safePlugin);
 
     const token = getTokenForProvider(character.modelProvider, character);
     const dataDir = path.join(__dirname, "../data");
@@ -95,6 +98,22 @@ async function startAgent(character: Character, directClient: DirectClient) {
 
     // report to console
     elizaLogger.debug(`Started ${character.name} as ${runtime.agentId}`);
+
+    if (character.plugins) {
+      console.log("Plugins are: ", character.plugins);
+      // const importedPlugins = await Promise.all(
+      //     character.plugins.map(async (plugin) => {
+      //       const indexFilePath = fs.existsSync(path.join(plugin as unknown as string, "index.js"))
+      //       ? path.join(plugin as unknown as string, "index.js")
+      //       : path.join(plugin as unknown as string, "index.ts");
+      //       console.log("indexFilePath", indexFilePath);
+      //         const importedPlugin = await import(indexFilePath);
+      //         return importedPlugin;
+      //     }),
+      // );
+      console.log("Plugins are: ", character.plugins);
+
+  }
 
     return runtime;
   } catch (error) {
