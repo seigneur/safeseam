@@ -38,7 +38,6 @@ export const lockAugustDevice: Action = {
 
       try {
           const deviceName = (message.content as Content).text.split('"')[1];
-          console.log(deviceName)
           const actionAttempt = await seamService.lockAugustDevice(deviceName);
           elizaLogger.success(
               `Successfully locked August device`
