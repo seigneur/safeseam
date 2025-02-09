@@ -77,6 +77,9 @@ importers:
       url:
         specifier: 0.11.4
         version: 0.11.4
+      viem:
+        specifier: ^2.22.23
+        version: 2.22.23(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10)(zod@3.24.1)
       ws:
         specifier: 8.18.0
         version: 8.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -14602,7 +14605,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.7
       '@noble/curves': 1.8.1
-      '@noble/hashes': 1.5.0
+      '@noble/hashes': 1.7.1
       '@solana/buffer-layout': 4.0.1
       agentkeepalive: 4.6.0
       bigint-buffer: 1.1.5
@@ -15041,7 +15044,7 @@ snapshots:
 
   '@types/ws@7.4.7':
     dependencies:
-      '@types/node': 12.20.55
+      '@types/node': 22.13.1
 
   '@types/ws@8.5.14':
     dependencies:
@@ -17051,7 +17054,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.3.4
+      debug: 4.4.0
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
