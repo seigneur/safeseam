@@ -101,22 +101,6 @@ async function startAgent(character: Character, directClient: DirectClient) {
     // report to console
     elizaLogger.debug(`Started ${character.name} as ${runtime.agentId}`);
 
-    if (character.plugins) {
-      console.log("Plugins are: ", character.plugins);
-      // const importedPlugins = await Promise.all(
-      //     character.plugins.map(async (plugin) => {
-      //       const indexFilePath = fs.existsSync(path.join(plugin as unknown as string, "index.js"))
-      //       ? path.join(plugin as unknown as string, "index.js")
-      //       : path.join(plugin as unknown as string, "index.ts");
-      //       console.log("indexFilePath", indexFilePath);
-      //         const importedPlugin = await import(indexFilePath);
-      //         return importedPlugin;
-      //     }),
-      // );
-      console.log("Plugins are: ", character.plugins);
-
-  }
-
     return runtime;
   } catch (error) {
     elizaLogger.error(

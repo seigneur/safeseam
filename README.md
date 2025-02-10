@@ -1,6 +1,7 @@
 # safeseam
-An SAFE Multisig based Escrow that triggers an IOT action using an Agent. Featuring Agent to Agent communication and resolution.
+An SAFE Multisig based Escrow that triggers an IOT action using an Agent. 
 
+Featuring Agent to Agent communication and resolution via an escrow mechanism.
 
 Todo's
 
