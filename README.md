@@ -48,6 +48,18 @@ ALTER TABLE Rooms ENABLE ROW LEVEL SECURITY;
 
 -- Create policies
 CREATE POLICY "Allow read access to all users"
-    ON Rooms FOR SELECT, INSERT, UPDATE
+    ON Rooms FOR SELECT
     TO authenticated
     USING (true);
+
+
+CREATE POLICY "Allow insert to authenticated users"
+    ON Rooms FOR INSERT
+    TO authenticated
+    WITH CHECK (true);
+
+CREATE POLICY "Allow update to authenticated users"
+    ON Rooms FOR UPDATE
+    TO authenticated
+    USING (true)
+    WITH CHECK (true);

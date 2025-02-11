@@ -26,7 +26,7 @@ export const safeService: SafeService = {
             owners: _safeConfig.owners,
             threshold: _safeConfig.threshold
           }
-        }
+        } //save to supabase under agent to agent name
           );
         return safeClient; 
     } catch (error: any) {

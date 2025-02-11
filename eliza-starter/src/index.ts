@@ -25,6 +25,7 @@ import {
   parseArguments,
 } from "./config/index.ts";
 import { initializeDatabase } from "./database/index.ts";
+import { RoomService, RoomStatus } from "./database/supabase.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -100,6 +101,20 @@ async function startAgent(character: Character, directClient: DirectClient) {
 
     // report to console
     elizaLogger.debug(`Started ${character.name} as ${runtime.agentId}`);
+
+    // register the room info for this agent
+    const roomService = new RoomService();
+    
+    // Create a room
+    const room = await roomService.createRoom({
+        roomno: '201',
+        status: RoomStatus.AVAILABLE,
+        agentaddress: '0x123A',
+        escrow: 0.0
+    });
+
+    const roomInfo = await roomService.getAllRooms();
+    console.log("Room", room);
 
     return runtime;
   } catch (error) {
