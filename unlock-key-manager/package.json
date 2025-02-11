@@ -1,0 +1,27 @@
+{
+  "name": "unlock-key-manager",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node -r dotenv/config src/index.ts"
+  },
+  "author": "Shaun Lai",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@lit-protocol/auth-helpers": "^7.0.6",
+    "@lit-protocol/constants": "^7.0.6",
+    "@lit-protocol/contracts-sdk": "^7.0.6",
+    "@lit-protocol/encryption": "^7.0.6",
+    "@lit-protocol/lit-node-client": "^7.0.6",
+    "@lit-protocol/types": "^7.0.6",
+    "contracts-sdk": "link:@lit-protocol/contracts-sdk",
+    "ethers": "v5"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.3.6"
+  }
+}
