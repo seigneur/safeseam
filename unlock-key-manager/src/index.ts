@@ -18,10 +18,11 @@ const ETHEREUM_PRIVATE_KEY = getEnv("ETHEREUM_PRIVATE_KEY");
 const LIT_CAPACITY_CREDIT_TOKEN_ID =
   process.env["LIT_CAPACITY_CREDIT_TOKEN_ID"];
 
-export const decryptApiKey = async (alchemyUrl: string, key: string) => {
+export const decryptApiKey = async (key: string, amount: string, checkAddress: string) => {
   let litNodeClient: LitNodeClient;
 
   try {
+    //#region Setup
     const ethersWallet = new ethers.Wallet(
       ETHEREUM_PRIVATE_KEY,
       new ethers.providers.JsonRpcProvider(LIT_RPC.CHRONICLE_YELLOWSTONE)
@@ -69,18 +70,19 @@ export const decryptApiKey = async (alchemyUrl: string, key: string) => {
         uses: "1",
       });
     console.log("✅ Capacity Delegation Auth Sig created");
+    //#endregion
 
     const accessControlConditions: AccessControlConditions = [
       {
-        contractAddress: "",
-        standardContractType: "",
-        chain: "ethereum",
-        method: "eth_getBalance",
-        parameters: [":userAddress", "latest"],
-        returnValueTest: {
-          comparator: ">=",
-          value: "0",
-        },
+      contractAddress: "",
+      standardContractType: "",
+      chain: "ethereum",
+      method: "eth_getBalance",
+      parameters: [checkAddress, "latest"], // Replace with your desired Ethereum address
+      returnValueTest: {
+      comparator: ">=",
+      value: amount,
+      },
       },
     ];
 
@@ -151,8 +153,7 @@ export const decryptApiKey = async (alchemyUrl: string, key: string) => {
       jsParams: {
         accessControlConditions,
         ciphertext,
-        dataToEncryptHash,
-        alchemyUrl,
+        dataToEncryptHash
       },
     });
     console.log("✅ Executed the Lit Action");
@@ -166,10 +167,9 @@ export const decryptApiKey = async (alchemyUrl: string, key: string) => {
 };
 
 const main = async () => {
-  const alchemyUrl = "https://base-mainnet.g.alchemy.com/v2/";
   const key = "UNLOCK_GARAGE_AUGUST";
   
-  const result = await decryptApiKey(alchemyUrl, key);
+  const result = await decryptApiKey(key, '10000000000000000', '0x810181e929658A86983c4bDdA3dc251b7dA6FA00');
   console.log("Decryption result:", result);
 };
 
