@@ -17,8 +17,9 @@ import { getEnv } from "./utils.ts";
 const ETHEREUM_PRIVATE_KEY = getEnv("ETHEREUM_PRIVATE_KEY");
 const LIT_CAPACITY_CREDIT_TOKEN_ID =
   process.env["LIT_CAPACITY_CREDIT_TOKEN_ID"];
+const SEAM_API_KEY = getEnv("SEAM_API_KEY");
 
-export const decryptApiKey = async (key: string, amount: string, checkAddress: string) => {
+export const decryptApiKey = async (key: string, amount: string, checkAddress: string, deviceId: string) => {
   let litNodeClient: LitNodeClient;
 
   try {
@@ -153,7 +154,9 @@ export const decryptApiKey = async (key: string, amount: string, checkAddress: s
       jsParams: {
         accessControlConditions,
         ciphertext,
-        dataToEncryptHash
+        dataToEncryptHash,
+        SEAM_API_KEY,
+        deviceId,
       },
     });
     console.log("✅ Executed the Lit Action");
@@ -169,7 +172,7 @@ export const decryptApiKey = async (key: string, amount: string, checkAddress: s
 const main = async () => {
   const key = "UNLOCK_GARAGE_AUGUST";
   
-  const result = await decryptApiKey(key, '10000000000000000', '0x810181e929658A86983c4bDdA3dc251b7dA6FA00');
+  const result = await decryptApiKey(key, '10', '0x810181e929658A86983c4bDdA3dc251b7dA6FA00', 'd70c426e-b6f9-4635-a07a-93f93ffb5080');
   console.log("Decryption result:", result);
 };
 
