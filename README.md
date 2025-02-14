@@ -13,6 +13,28 @@ Todo's
 - [ ] Use Gelato plugin
 - [ ] Open a seam lock based on SAFE transaction or multisign
 
+- [ ] Create another plugin that deals with room booking to demonstrate use case
+
+## Story
+
+
+Claire has 2 rooms in Berlin
+Zoey has 1 room in Berlin
+
+Mary wants a room in Berlin, John wants a room in Berlin
+
+Both, Claire and Zoey run their respective agents to manage their AirBnB bookings. 
+
+At some point ZoeyAgent runs out of rooms. So ZoeyAgent requests ClaireAgent to create an escrow, using 
+their respective addresses, this is a SAFE for John's payment.
+
+John who has registered with ZoeyAgent, pays to the SAFE, the escrow for ClaireAgents room.
+John goes to the room and scans a QR code which triggers the SAFE transaction.
+
+As part of that same transaction the room door also unlocks using SEAM.
+Thus, we have demonstrated a user flow for agent to agent escrow and collaboration without **TRUSTED INTERMEDIARIES**.
+
+
 
 Created a custom DB, for interfacing between agents
 

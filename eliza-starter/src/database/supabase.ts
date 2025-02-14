@@ -13,7 +13,7 @@ export interface Room {
   roomno: string
   status: RoomStatus
   agentaddress: string
-  escrow: number
+  escrow: string
   created_at?: string
   updated_at?: string
 }
