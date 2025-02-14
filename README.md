@@ -29,6 +29,8 @@ At some point ZoeyAgent runs out of rooms. So ZoeyAgent requests ClaireAgent to 
 their respective addresses, this is a SAFE for John's payment.
 
 John who has registered with ZoeyAgent, pays to the SAFE, the escrow for ClaireAgents room.
+
+Part 2 - 
 John goes to the room and scans a QR code which triggers the SAFE transaction.
 
 As part of that same transaction the room door also unlocks using SEAM.
