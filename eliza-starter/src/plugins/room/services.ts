@@ -2,7 +2,7 @@ import { IAgentRuntime, ServiceType } from "@elizaos/core";
 import { RoomService } from "./types";
 
 
-export const roomsService: RoomService = {
+export const roomService: RoomService = {
 
   serviceType: ServiceType.BUTTPLUG,
 
@@ -11,6 +11,7 @@ export const roomsService: RoomService = {
   },
   bookRoom: async (_user:string, runtime: IAgentRuntime): Promise<any> => {
     try {
+      return {roomNo: '101', escrow: '0x1234'};
         
     } catch (error: any) {
         console.error("Error creating Safe", error.message);
@@ -40,14 +41,4 @@ export const roomsService: RoomService = {
 //       throw error;
 //   }
 // }
-}
-
-const generateTransferCallData = (to: string, value: bigint) => {
-  const functionAbi = parseAbi(['function transfer(address _to, uint256 _value) returns (bool)'])
-
-  return encodeFunctionData({
-    abi: functionAbi,
-    functionName: 'transfer',
-    args: [to, value]
-  })
 }

@@ -1,10 +1,10 @@
 import { Plugin } from "@elizaos/core";
-import { safeAction } from "./action.ts";
+import { roomAction } from "./action.ts";
 
-export const safePlugin: Plugin = {
-  name: "safe",
-  description: "Basic ops for safe plugin",
-  actions: [safeAction],
+export const roomPlugin: Plugin = {
+  name: "room",
+  description: "Basic ops for room booking",
+  actions: [roomAction],
   evaluators: [],
   providers: [],
 };

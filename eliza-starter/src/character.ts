@@ -1,9 +1,12 @@
 import { Character, Clients, defaultCharacter, ModelProviderName } from "@elizaos/core";
+import { roomPlugin } from "./plugins/room/index.ts";
+import { safePlugin } from "./plugins/safe/index.ts";
+import { seamPlugin } from "./plugins/seam/index.ts";
 
 export const character: Character = {
     // ...defaultCharacter,
     name: "Claire",
-    plugins: [],
+    plugins: [roomPlugin, safePlugin, seamPlugin],
     clients: [Clients.TELEGRAM],
     modelProvider: ModelProviderName.OPENAI,
     settings: {

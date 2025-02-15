@@ -5,8 +5,8 @@ interface RoomParametersContent extends Content {
   text: string;
 }
 
-export const safeAction: Action = {
-  name: 'SAFE',
+export const roomAction: Action = {
+  name: 'ROOM',
   description: 'Performs basic Room related operations',
   similes: [
     'CHECK_ROOMS',
@@ -40,9 +40,9 @@ export const safeAction: Action = {
     }
   },
   handler: async (runtime: IAgentRuntime,
-    message: Memory, state?: State
-    , callback?: HandlerCallback
-  ): Promise<boolean> => {
+    message: Memory, state?: State,   options?: {
+      [key: string]: unknown;
+  }, callback?: HandlerCallback): Promise<boolean> => {
     try {
       const content = message.content as RoomParametersContent;
       const addresses = content.text.match(/0x[a-fA-F0-9]+/g) || [];
@@ -50,7 +50,7 @@ export const safeAction: Action = {
       //check the room available to itself
       // if no rooms goto chat group XYZ and ask for rooms 
       // 
-      const rooms = await roomService.bookRoom("user1");
+      const rooms = await roomService.bookRoom("user1", runtime);
       if (callback) {
         callback({
           text: `${content.asset} Rooms:\n Booked: ${rooms.RoomNo}\nPayment To: ${rooms.escrow}`,
