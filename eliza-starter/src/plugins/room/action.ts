@@ -2,22 +2,22 @@ import { Action, Content, IAgentRuntime, Memory, State } from '@elizaos/core';
 import { safeService } from './services.ts';
 import { SafeCreateResponse } from './types.ts';
 
-interface SafeParametersContent extends Content {
+interface RoomParametersContent extends Content {
   text: string;
 }
 
 export const safeAction: Action = {
   name: 'SAFE',
-  description: 'Performs basic SAFE Multisig Operations',
+  description: 'Performs basic Room related operations',
   similes: [
-    'CREATE_SAFE',
-    'SEND'
+    'CHECK ROOMS',
+    'CREATE BOOKING'
     ],
   examples: [
     [
       {
         user: '{{user1}}',
-        content: { text: 'Create a safe with 0xaddress1, 0xaddress2' } as SafeParametersContent
+        content: { text: 'Create a booking for me for Wednesday' } as RoomParametersContent
       },
       {
         user: '{{agentName}}',
@@ -30,7 +30,7 @@ export const safeAction: Action = {
   ],
   validate: async (runtime: IAgentRuntime, message: Memory, state?: State): Promise<boolean> => {
     try {
-      const content = message.content as SafeParametersContent;
+      const content = message.content as RoomParametersContent;
       if (typeof content.text !== 'string') {
         return false;
       }
@@ -42,13 +42,12 @@ export const safeAction: Action = {
   },
   handler: async (runtime: IAgentRuntime, message: Memory, state?: State): Promise<SafeCreateResponse> => {
     try {
-      const content = message.content as SafeParametersContent;
+      const content = message.content as RoomParametersContent;
       const addresses = content.text.match(/0x[a-fA-F0-9]+/g) || [];
       
-      let result: string;
-
-      result = await safeService.createSafe({ owners:addresses, threshold:1 }, runtime);
-
+      //check the room available to itself
+      // if no rooms goto chat group XYZ and ask for rooms 
+      // 
       return {
         success: true,
         response: `${content.text} = ${result}`

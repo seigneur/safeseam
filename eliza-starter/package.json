@@ -25,6 +25,7 @@
     "@elizaos/plugin-solana": "0.1.9",
     "@elizaos/plugin-starknet": "0.1.9",
     "@safe-global/sdk-starter-kit": "^1.1.4",
+    "@supabase/supabase-js": "^2.48.1",
     "@tavily/core": "0.0.2",
     "amqplib": "0.10.5",
     "better-sqlite3": "11.5.0",

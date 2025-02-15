@@ -25,6 +25,9 @@ import {
   parseArguments,
 } from "./config/index.ts";
 import { initializeDatabase } from "./database/index.ts";
+import { RoomService, RoomStatus } from "./database/supabase.ts";
+import { safeService } from "./plugins/safe/services.ts";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -101,21 +104,16 @@ async function startAgent(character: Character, directClient: DirectClient) {
     // report to console
     elizaLogger.debug(`Started ${character.name} as ${runtime.agentId}`);
 
-    if (character.plugins) {
-      console.log("Plugins are: ", character.plugins);
-      // const importedPlugins = await Promise.all(
-      //     character.plugins.map(async (plugin) => {
-      //       const indexFilePath = fs.existsSync(path.join(plugin as unknown as string, "index.js"))
-      //       ? path.join(plugin as unknown as string, "index.js")
-      //       : path.join(plugin as unknown as string, "index.ts");
-      //       console.log("indexFilePath", indexFilePath);
-      //         const importedPlugin = await import(indexFilePath);
-      //         return importedPlugin;
-      //     }),
-      // );
-      console.log("Plugins are: ", character.plugins);
-
-  }
+    // register the room info for this agent
+    // const roomService = new RoomService();
+    
+    // Create a room
+    // const room = await roomService.createRoom({
+    //     roomno: '201',
+    //     status: RoomStatus.AVAILABLE,
+    //     agentaddress:character.settings.secrets.address, //this we take from settings
+    //     escrow: ""
+    // });
 
     return runtime;
   } catch (error) {
@@ -185,7 +183,7 @@ const startAgents = async () => {
     elizaLogger.log(`Server started on alternate port ${serverPort}`);
   }
 
-  const isDaemonProcess = process.env.DAEMON_PROCESS === "true";
+  const isDaemonProcess = process.env.DAEMON_PROCESS === "false";
   if(!isDaemonProcess) {
     elizaLogger.log("Chat started. Type 'exit' to quit.");
     const chat = startChat(characters);

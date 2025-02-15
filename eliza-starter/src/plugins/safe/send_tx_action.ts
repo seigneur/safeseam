@@ -8,22 +8,21 @@ interface SafeParametersContent extends Content {
 
 export const safeAction: Action = {
   name: 'SAFE',
-  description: 'Performs basic SAFE Multisig Operations',
+  description: 'Performs basic SAFE Multisig Send',
   similes: [
-    'CREATE_SAFE',
     'SEND'
     ],
   examples: [
     [
       {
         user: '{{user1}}',
-        content: { text: 'Create a safe with 0xaddress1, 0xaddress2' } as SafeParametersContent
+        content: { text: 'Send 2 to 0xaddress1 0.0001 USDC' } as SafeParametersContent
       },
       {
         user: '{{agentName}}',
         content: {
-          text: 'The safe has been created with 0xaddress1 and 0xaddress2',
-          action: 'CREATE_SAFE'
+          text: '0.001 has been sent to 0xaddress1',
+          action: 'SEND'
         }
       }
     ],
@@ -43,11 +42,20 @@ export const safeAction: Action = {
   handler: async (runtime: IAgentRuntime, message: Memory, state?: State): Promise<SafeCreateResponse> => {
     try {
       const content = message.content as SafeParametersContent;
-      const addresses = content.text.match(/0x[a-fA-F0-9]+/g) || [];
-      
-      let result: string;
+      const addressMatch = content.text.match(/0x[a-fA-F0-9]{40}/);
+      const amountMatch = content.text.match(/(\d+(\.\d+)?)/);
 
-      result = await safeService.createSafe({ owners:addresses, threshold:1 }, runtime);
+      if (!addressMatch || !amountMatch) {
+        throw new Error('Invalid input format');
+      }
+
+      const address = addressMatch[0];
+      const amount = parseFloat(amountMatch[0]);
+
+    let result: string;
+
+    // Use sendTx to handle amount and address
+   // result = await safeService.sendTx('safeAddress', runtime, BigInt(amount * 1e6), address);
 
       return {
         success: true,
