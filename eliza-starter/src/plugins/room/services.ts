@@ -9,18 +9,9 @@ export const roomsService: RoomService = {
   initialize: async (runtime: IAgentRuntime): Promise<void> => {
     console.log("Rooms Service Initialized");
   },
-  bookRoom: async (_safeConfig: SafeConfig, runtime: IAgentRuntime): Promise<any> => {
+  bookRoom: async (_user:string, runtime: IAgentRuntime): Promise<any> => {
     try {
-        const safeClient = await createSafeClient({
-          provider: runtime.getSetting("SAFE_RPC_URL"),
-          signer: runtime.getSetting("SAFE_DEPLOYER_PK_KEY"),
-          safeOptions: {
-            owners: _safeConfig.owners,
-            threshold: _safeConfig.threshold
-          }
-        } //save to supabase under agent to agent name
-          );
-        return safeClient; 
+        
     } catch (error: any) {
         console.error("Error creating Safe", error.message);
         throw error;

@@ -3,17 +3,20 @@ An SAFE Multisig based Escrow that triggers an IOT action using an Agent.
 
 Agent to Agent communication and collaboration via an escrow mechanism powered by SAFE.
 
-Todo's
+## Todo's
 
 - [X] Add eliza
 - [x] Implement SAFE multisig plugin into eliza
-- [ ] Able to create a safe
+- [x] Able to create a safe
 - [ ] Create a SAFE transaction
-- [ ] Integrate lit for agent-to-agent key exchange
+- [x] Integrate lit for agent-to-agent key exchange
 - [ ] Use Gelato plugin
-- [ ] Open a seam lock based on SAFE transaction or multisign
+- [x] Open a seam lock based on SAFE transaction or multisign
 
-- [ ] Create another plugin that deals with room booking to demonstrate use case
+- [x] Create another plugin that deals with room booking to demonstrate use case
+- [x] Integrate all together for a complete flow
+
+NOTE: Although we were not able to fully integrate all the modules (LIT + ROOM escrow), we are able to make it work individually. 
 
 ## Story
 
