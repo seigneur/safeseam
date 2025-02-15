@@ -1,6 +1,5 @@
-import { Action, Content, IAgentRuntime, Memory, State } from '@elizaos/core';
-import { safeService } from './services.ts';
-import { SafeCreateResponse } from './types.ts';
+import { Action, Content, HandlerCallback, IAgentRuntime, Memory, State } from '@elizaos/core';
+import { roomService } from './services.ts';
 
 interface RoomParametersContent extends Content {
   text: string;
@@ -10,9 +9,9 @@ export const safeAction: Action = {
   name: 'SAFE',
   description: 'Performs basic Room related operations',
   similes: [
-    'CHECK ROOMS',
-    'CREATE BOOKING'
-    ],
+    'CHECK_ROOMS',
+    'CREATE_BOOKING'
+  ],
   examples: [
     [
       {
@@ -22,8 +21,8 @@ export const safeAction: Action = {
       {
         user: '{{agentName}}',
         content: {
-          text: 'The safe has been created with 0xaddress1 and 0xaddress2',
-          action: 'CREATE_SAFE'
+          text: 'Let me help create a booking for you',
+          action: 'CREATE_BOOKING'
         }
       }
     ],
@@ -40,23 +39,34 @@ export const safeAction: Action = {
       return false;
     }
   },
-  handler: async (runtime: IAgentRuntime, message: Memory, state?: State): Promise<SafeCreateResponse> => {
+  handler: async (runtime: IAgentRuntime,
+    message: Memory, state?: State
+    , callback?: HandlerCallback
+  ): Promise<boolean> => {
     try {
       const content = message.content as RoomParametersContent;
       const addresses = content.text.match(/0x[a-fA-F0-9]+/g) || [];
-      
+
       //check the room available to itself
       // if no rooms goto chat group XYZ and ask for rooms 
       // 
-      return {
-        success: true,
-        response: `${content.text} = ${result}`
-      };
+      const rooms = await roomService.bookRoom("user1");
+      if (callback) {
+        callback({
+          text: `${content.asset} Rooms:\n Booked: ${rooms.RoomNo}\nPayment To: ${rooms.escrow}`,
+          content: rooms,
+        });
+      }
+      return true;
     } catch (error) {
-      return {
-        success: false,
-        response: error instanceof Error ? error.message : 'Safe Creation failed'
-      };
+      console.error(error);
+      if (callback) {
+        callback({
+          text: error.message,
+          content: { error: error.message },
+        });
+      }
+      return false;
     }
   }
 };
